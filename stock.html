@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Mechanics Belgium - Stock</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Mini Mechanics Belgium</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="stock.html" class="active">Stock</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Current Stock</h2>
+      <p>Hier is wat we op dit moment hebben:</p>
+      <div class="stock-grid">
+        <button class="stock-item" data-title="2020 Honda Monkey 125" data-price="€3,500" data-desc="Een solide, street-legal minibike. Perfect voor city cruising. Betrouwbaar en smooth." data-img="https://i.imgur.com/Jbq3k74.jpg" aria-label="Details Honda Monkey 125">
+          <img src="https://i.imgur.com/Jbq3k74_thumb.jpg" alt="Honda Monkey 125" />
+          <span>Honda Monkey 125</span>
+        </button>
+        <button class="stock-item" data-title="2019 Kawasaki Z125 Pro" data-price="€2,900" data-desc="Aggressieve styling met killer performance voor minibike fans. Compact maar krachtig." data-img="https://i.imgur.com/kwIvuJo.jpg" aria-label="Details Kawasaki Z125 Pro">
+          <img src="https://i.imgur.com/kwIvuJo_thumb.jpg" alt="Kawasaki Z125 Pro" />
+          <span>Kawasaki Z125 Pro</span>
+        </button>
+        <button class="stock-item" data-title="Custom Minibike Builds" data-price="Op aanvraag" data-desc="Wil je iets unieks? We bouwen en customizen minibikes naar jouw stijl en wensen." data-img="https://i.imgur.com/m8zG5LD.jpg" aria-label="Details Custom Minibike">
+          <img src="https://i.imgur.com/m8zG5LD_thumb.jpg" alt="Custom Minibike" />
+          <span>Custom Builds</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Mini Mechanics Belgium — No bullshit, just minibikes.
+  </footer>
+
+  <div id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <div id="modal-content">
+      <button id="modal-close" aria-label="Sluit details">&times;</button>
+      <img id="modal-img" src="" alt="" />
+      <h3 id="modal-title"></h3>
+      <p id="modal-price"></p>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+
+  <script src="modal.js"></script>
+</body>
+</html>
