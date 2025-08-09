@@ -91,26 +91,27 @@
     line-height: 1.4;
   }
 
-  /* Images container above button */
   .images-container {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.9s;
+    opacity: 0;
   }
 
   .images-container img {
-    max-width: 320px;
-    height: auto; /* Keep aspect ratio */
+    width: 320px;
+    height: auto;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(35, 134, 54, 0.5);
-    transition: transform 0.3s ease;
-    cursor: pointer;
+    box-shadow: 0 0 20px #58a6ff66;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .images-container img:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 40px #58a6ffcc;
   }
 
   .download-btn {
@@ -125,7 +126,7 @@
     box-shadow: 0 8px 15px rgba(35,134,54,0.4);
     transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     animation: fadeInUp 1s ease forwards;
-    animation-delay: 1s;
+    animation-delay: 1.2s;
     opacity: 0;
     user-select: none;
   }
@@ -167,10 +168,12 @@
       max-width: 320px;
     }
     .images-container {
-      gap: 1rem;
+      flex-direction: column;
+      gap: 1.5rem;
     }
     .images-container img {
-      max-width: 90vw;
+      width: 90%;
+      max-width: 320px;
     }
   }
 </style>
@@ -198,9 +201,9 @@
     </div>
 
     <div class="images-container">
-      <img src="https://media.discordapp.net/attachments/1403551835087700088/1403792726926823476/image-1.png?ex=6898d75b&is=689785db&hm=b78e7635375a6f99ba9ef5010120c3717cfbe99dd4e669eeacff01cb6c528076&=&format=webp&quality=lossless" alt="Screenshot 1" />
-      <img src="https://media.discordapp.net/attachments/1403551835087700088/1403792727573008628/image.png?ex=6898d75b&is=689785db&hm=ff429d57c95a1cab7fefca37b9a1201c7f759eb575f7acd05fa5cf988452174b&=&format=webp&quality=lossless" alt="Screenshot 2" />
-      <img src="https://media.discordapp.net/attachments/1403551835087700088/1403792727573008628/image.png?ex=6898d75b&is=689785db&hm=ff429d57c95a1cab7fefca37b9a1201c7f759eb575f7acd05fa5cf988452174b&=&format=webp&quality=lossless" alt="Screenshot 3" />
+      <img src="images/image-1.png" alt="Screenshot 1" />
+      <img src="images/image-2.png" alt="Screenshot 2" />
+      <img src="images/image-3.png" alt="Screenshot 3" />
     </div>
 
     <a href="https://discord.com/channels/1401598647493201931/1401683728526475274" 
