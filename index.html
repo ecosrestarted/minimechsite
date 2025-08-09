@@ -114,6 +114,47 @@
     transform: translateY(-3px);
   }
 
+  /* New Own Download Button */
+  .own-download-btn {
+    margin-top: 1.5rem;
+    background: #ff4c4c;
+    box-shadow: 0 8px 15px rgba(255,76,76,0.4);
+    position: relative;
+    padding-left: 4.5rem; /* ruimte voor het icoon */
+    text-align: left;
+    display: inline-block;
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1.1s;
+    opacity: 0;
+    user-select: none;
+  }
+
+  .own-download-btn:hover {
+    background: #e04343;
+    box-shadow: 0 12px 25px rgba(224,67,67,0.7);
+    transform: translateY(-3px);
+  }
+
+  .own-download-btn::before {
+    content: "";
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    background-image: url('https://media.discordapp.net/attachments/1403551835087700088/1403788422845563091/image.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
   /* Animations */
   @keyframes fadeInDown {
     0% { opacity: 0; transform: translateY(-40px); }
@@ -172,6 +213,11 @@
     <a href="https://discord.com/channels/1401598647493201931/1401683728526475274" 
        class="download-btn" target="_blank" rel="noopener noreferrer">
        Download Now
+    </a>
+
+    <a href="https://media.discordapp.net/attachments/1403551835087700088/1403788422845563091/image.png" 
+       class="download-btn own-download-btn" target="_blank" rel="noopener noreferrer">
+       Own Download
     </a>
   </div>
 
