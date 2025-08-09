@@ -6,13 +6,18 @@
 <title>ERLC PMS - ERLC Python Macro Scripts</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body>
+
+<button class="mode-toggle" id="modeToggle">Light Mode</button>
 
 <header>ERLC PMS</header>
 <h2>Python macro scripts exclusively for ERLC (Emergency Response: Liberty County)</h2>
 
-<div class="features">
+<div id="particles-js" style="position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></div>
+
+<section class="features">
   <div class="feature">
     <h3>Exclusively for ERLC</h3>
     <p>No random Roblox cheats, just clean and safe automation for ERLC gameplay.</p>
@@ -25,15 +30,133 @@
     <h3>Constant Updates</h3>
     <p>We keep scripts fresh to work with every update of ERLC.</p>
   </div>
+</section>
+
+<a href="https://discord.com/channels/1401598647493201931/1401683728526475274" target="_blank" rel="noopener noreferrer" class="download-btn">Join Discord &amp; Download</a>
+
+<section class="faq">
+  <h3>How to use the scripts?</h3>
+  <ul>
+    <li>Join our Discord to get the latest scripts.</li>
+    <li>Follow the instructions provided with each script.</li>
+    <li>Run the Python macros while playing ERLC.</li>
+    <li>Keep scripts updated to avoid detection.</li>
+  </ul>
+</section>
+
+<section class="testimonials">
+  <div class="testimonial-text" id="testimonialText">"Best ERLC scripts I've ever used, totally changed my gameplay!"</div>
+  <div class="testimonial-author" id="testimonialAuthor">- ProGamer123</div>
+</section>
+
+<div class="discord-widget">
+  <iframe src="https://discord.com/widget?id=1401598647493201931&theme=dark" width="350" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 </div>
 
-<a href="https://discord.com/channels/1401598647493201931/1401683728526475274" target="_blank" rel="noopener noreferrer" class="download-btn">Join Discord &amp; Get Cheat</a>
-
-<p class="disclaimer">
-  Disclaimer: Use responsibly. Scripts are designed only for ERLC. We are not liable for any bans or account issues.
-</p>
-
 <footer>© 2025 ERLC PMS</footer>
+
+<script>
+// Particle.js config
+particlesJS('particles-js',
+  {
+    "particles": {
+      "number": {
+        "value": 50,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": { "value": "#58a6ff" },
+      "shape": {
+        "type": "circle",
+        "stroke": { "width": 0, "color": "#000000" },
+      },
+      "opacity": {
+        "value": 0.3,
+        "random": true,
+        "anim": { "enable": false }
+      },
+      "size": {
+        "value": 3,
+        "random": true,
+        "anim": { "enable": false }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#58a6ff",
+        "opacity": 0.2,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 2,
+        "direction": "none",
+        "random": false,
+        "straight": false,
+        "out_mode": "bounce",
+        "bounce": true,
+        "attract": { "enable": false }
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": { "enable": true, "mode": "grab" },
+        "onclick": { "enable": true, "mode": "push" }
+      },
+      "modes": {
+        "grab": { "distance": 140, "line_linked": { "opacity": 0.6 } },
+        "push": { "particles_nb": 4 }
+      }
+    },
+    "retina_detect": true
+  }
+);
+
+// Scroll reveal for features
+const features = document.querySelectorAll('.feature');
+const revealOnScroll = () => {
+  const triggerBottom = window.innerHeight * 0.85;
+  features.forEach(feature => {
+    const featureTop = feature.getBoundingClientRect().top;
+    if(featureTop < triggerBottom) {
+      feature.classList.add('visible');
+    }
+  });
+};
+window.addEventListener('scroll', revealOnScroll);
+revealOnScroll(); // initial check
+
+// Testimonials slider (basic)
+const testimonials = [
+  {text: `"Best ERLC scripts I've ever used, totally changed my gameplay!"`, author: "- ProGamer123"},
+  {text: `"Works perfectly, no issues detected."`, author: "- MacroMaster"},
+  {text: `"Super easy to setup and reliable."`, author: "- ERLCFan42"},
+  {text: `"Support on Discord is top notch."`, author: "- LegitUser"}
+];
+let testimonialIndex = 0;
+const testimonialText = document.getElementById('testimonialText');
+const testimonialAuthor = document.getElementById('testimonialAuthor');
+
+setInterval(() => {
+  testimonialIndex = (testimonialIndex + 1) % testimonials.length;
+  testimonialText.textContent = testimonials[testimonialIndex].text;
+  testimonialAuthor.textContent = testimonials[testimonialIndex].author;
+}, 6000);
+
+// Dark / Light mode toggle
+const modeToggle = document.getElementById('modeToggle');
+modeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('light');
+  if(document.body.classList.contains('light')) {
+    modeToggle.textContent = 'Dark Mode';
+  } else {
+    modeToggle.textContent = 'Light Mode';
+  }
+});
+</script>
 
 </body>
 </html>

@@ -1,30 +1,48 @@
+/* Reset & basics */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   background: #0d1117;
   color: #c9d1d9;
   font-family: 'Orbitron', sans-serif;
-  margin: 0;
-  padding: 0;
-  text-align: center;
   user-select: none;
   overflow-x: hidden;
+  cursor: crosshair;
+  transition: background 0.3s ease, color 0.3s ease;
+  scroll-behavior: smooth;
 }
 
+/* Sticky header */
 header {
+  position: sticky;
+  top: 0;
+  background: #0b0f14dd;
+  backdrop-filter: saturate(180%) blur(20px);
   padding: 2.5rem 0;
   font-size: 3rem;
   color: #58a6ff;
   text-shadow: 0 0 15px #58a6ff;
   font-weight: 700;
+  z-index: 9999;
 }
 
+/* Subheader */
 h2 {
   margin-top: 0;
   font-weight: 400;
   color: #8b949e;
   font-size: 1.4rem;
   margin-bottom: 3rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
 }
 
+/* Features container */
 .features {
   display: flex;
   justify-content: center;
@@ -33,19 +51,25 @@ h2 {
   margin: 0 1rem 3rem 1rem;
 }
 
+/* Single feature box */
 .feature {
   background: #161b22;
   padding: 1.8rem 2.4rem;
   border-radius: 12px;
   width: 250px;
   box-shadow: 0 0 20px #58a6ff55;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: default;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.7s ease;
 }
-
+.feature.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 .feature:hover {
-  transform: translateY(-6px);
   box-shadow: 0 0 35px #58a6ffcc;
+  transform: translateY(-6px);
 }
 
 .feature h3 {
@@ -61,6 +85,7 @@ h2 {
   line-height: 1.4;
 }
 
+/* Download button */
 .download-btn {
   display: inline-block;
   background: #238636;
@@ -74,14 +99,23 @@ h2 {
   cursor: pointer;
   text-decoration: none;
   box-shadow: 0 0 25px #238636bb;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.6s ease, box-shadow 0.6s ease;
+  animation: pulseGlow 2.5s infinite;
 }
-
 .download-btn:hover {
   background: #2ea043;
-  box-shadow: 0 0 40px #2ea043dd;
+  box-shadow: 0 0 50px #2ea043dd;
+}
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 25px #238636bb;
+  }
+  50% {
+    box-shadow: 0 0 60px #2ea043dd;
+  }
 }
 
+/* Disclaimer */
 .disclaimer {
   font-size: 0.9rem;
   color: #484f58;
@@ -89,11 +123,147 @@ h2 {
   margin: 2rem auto 3rem auto;
   line-height: 1.4;
   font-style: italic;
+  padding: 0 1rem;
 }
 
+/* Footer */
 footer {
   padding: 1rem 0;
   color: #484f58;
   font-size: 0.8rem;
   user-select: none;
+  text-align: center;
+}
+
+/* FAQ Section */
+.faq {
+  max-width: 700px;
+  margin: 0 auto 4rem auto;
+  padding: 0 1rem;
+  text-align: left;
+}
+.faq h3 {
+  color: #58a6ff;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+.faq ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #8b949e;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Testimonials */
+.testimonials {
+  max-width: 600px;
+  margin: 0 auto 4rem auto;
+  background: #161b22;
+  border-radius: 15px;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 0 20px #58a6ff55;
+  color: #8b949e;
+  font-size: 1rem;
+  position: relative;
+}
+.testimonial-text {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  min-height: 80px;
+}
+.testimonial-author {
+  text-align: right;
+  font-weight: 700;
+  color: #58a6ff;
+}
+
+/* Discord widget container */
+.discord-widget {
+  max-width: 350px;
+  margin: 3rem auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 20px #7289daaa;
+}
+
+/* Dark mode toggle */
+.mode-toggle {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: #161b22cc;
+  border: none;
+  color: #58a6ff;
+  font-size: 1.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #58a6ffbb;
+  z-index: 10000;
+  transition: background 0.3s ease;
+}
+.mode-toggle:hover {
+  background: #1f2531dd;
+}
+
+/* Light mode overrides */
+body.light {
+  background: #f0f2f5;
+  color: #222;
+  cursor: default;
+}
+body.light header {
+  background: #ffffffdd;
+  color: #0078d4;
+  text-shadow: none;
+}
+body.light .feature {
+  background: #fff;
+  box-shadow: 0 0 15px #0078d455;
+  color: #222;
+}
+body.light .feature h3 {
+  color: #0078d4;
+}
+body.light .feature:hover {
+  box-shadow: 0 0 30px #0078d4cc;
+  transform: translateY(-6px);
+}
+body.light .download-btn {
+  background: #0078d4;
+  box-shadow: 0 0 25px #0078d4bb;
+  color: #fff;
+  animation: pulseGlowLight 2.5s infinite;
+}
+body.light .download-btn:hover {
+  background: #005a9e;
+  box-shadow: 0 0 50px #005a9eee;
+}
+@keyframes pulseGlowLight {
+  0%, 100% {
+    box-shadow: 0 0 25px #0078d4bb;
+  }
+  50% {
+    box-shadow: 0 0 60px #005a9eee;
+  }
+}
+body.light .disclaimer {
+  color: #555;
+}
+body.light footer {
+  color: #555;
+}
+body.light .faq ul {
+  color: #333;
+}
+body.light .testimonials {
+  background: #fff;
+  box-shadow: 0 0 15px #0078d455;
+  color: #222;
+}
+
+/* Custom cursor fallback for light mode */
+body.light {
+  cursor: default;
 }
