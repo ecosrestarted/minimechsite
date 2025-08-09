@@ -89,18 +89,20 @@
     line-height: 1.4;
   }
 
-  /* Image grid with tighter spacing */
+  /* images container with flex-wrap for tight rows */
   .images-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
     margin-bottom: 2rem;
     animation: fadeInUp 1s ease forwards;
     animation-delay: 0.8s;
     opacity: 0;
   }
   .images-grid img {
-    width: 100%;
+    width: 31.5%; /* 3 images per row with some gaps */
+    max-width: 320px;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 0 15px #00000055;
@@ -201,6 +203,11 @@
       width: 90%;
       max-width: 320px;
     }
+    .images-grid img {
+      width: 48%;
+      max-width: none;
+      margin-bottom: 0.5rem;
+    }
   }
 </style>
 </head>
@@ -240,20 +247,29 @@
   const popup = document.getElementById('popup');
   const popupImg = popup.querySelector('img');
 
-  imageFiles.forEach(file => {
+  // Clear grid just in case
+  grid.innerHTML = '';
+
+  // Rearrange images manually for tighter grouping (example: 3 images in a row)
+  function createImage(src) {
     const img = document.createElement('img');
-    img.src = `images/${file}`;
-    img.alt = file;
+    img.src = `images/${src}`;
+    img.alt = src;
     img.addEventListener('click', () => {
       popupImg.src = img.src;
       popup.classList.add('show');
     });
-    grid.appendChild(img);
+    return img;
+  }
+
+  // Append images with no breaks, so flex wraps tight
+  imageFiles.forEach(file => {
+    grid.appendChild(createImage(file));
   });
 
   popup.addEventListener('click', () => popup.classList.remove('show'));
 
-  // Particle background
+  // Particle background script (same as before)
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let particlesArray;
