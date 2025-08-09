@@ -16,8 +16,8 @@
   </nav>
 
   <main>
-    <h1>Contacteer mij</h1>
-    <form onsubmit="return sendMessage(event)">
+    <h1 class="fade-scroll">Contacteer mij</h1>
+    <form onsubmit="return sendMessage(event)" class="fade-scroll" style="transition-delay: 0.2s;">
       <label for="name">Naam</label>
       <input type="text" id="name" name="name" required />
 
@@ -36,6 +36,27 @@
   </footer>
 
   <script>
+    // Fade-in scroll observer
+    const faders = document.querySelectorAll('.fade-scroll');
+
+    const appearOptions = {
+      threshold: 0,
+      rootMargin: "0px 0px -100px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+
+    // Simple contact form alert
     function sendMessage(e) {
       e.preventDefault();
       alert('Bedankt voor je bericht! Ik neem zo snel mogelijk contact op.');

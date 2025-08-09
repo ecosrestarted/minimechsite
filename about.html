@@ -16,9 +16,40 @@
   </nav>
 
   <main>
-    <h1>Over Mini Mechanics Belgium</h1>
-    <p>
-      Ik ben Sigma, een automechanieker met een passie voor minibikes.  
-      Deze site is mijn hobbyproject waar ik mijn brommertjes toon en verkoop.
+    <h1 class="fade-scroll">Over Mini Mechanics Belgium</h1>
+    <p class="fade-scroll" style="transition-delay: 0.2s;">
+      Mini Mechanics Belgium is een passieproject van Sigma, een hobbyist die houdt van minibikes en alles daaromheen.
+      Alles draait hier om liefde voor de brommer, onderhoud en eerlijke handel.
     </p>
-    <
+    <p class="fade-scroll" style="transition-delay: 0.4s;">
+      Geen grote winkel, gewoon kwaliteit en vertrouwen.
+    </p>
+  </main>
+
+  <footer>
+    &copy; 2025 Mini Mechanics Belgium — Alle rechten voorbehouden.
+  </footer>
+
+  <script>
+    // Fade-in scroll observer
+    const faders = document.querySelectorAll('.fade-scroll');
+
+    const appearOptions = {
+      threshold: 0,
+      rootMargin: "0px 0px -100px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+</body>
+</html>

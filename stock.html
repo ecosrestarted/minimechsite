@@ -8,6 +8,8 @@
 </head>
 <body>
 
+  <div id="stock-bg"></div>
+
   <nav>
     <a href="index.html">Home</a>
     <a href="stock.html" class="active">Stock</a>
@@ -16,9 +18,20 @@
   </nav>
 
   <main>
-    <h1>Onze Stock</h1>
-    <div class="stock-grid" id="stockGrid">
-      <!-- Brommertjes komen hier via JS -->
+    <h1 class="fade-scroll">Onze Brommertjes</h1>
+    <div class="stock-grid fade-scroll" style="transition-delay: 0.2s;">
+      <!-- Stock cards; later dynamisch toevoegen kan -->
+      <div class="stock-card" onclick="openModal('brommer1.jpg', 'Yamaha Minibike 50cc', 'Top onderhouden Yamaha minibike, 50cc, 2-takt, start altijd. Prijs: €850')">
+        <img src="brommer1.jpg" alt="Yamaha Minibike 50cc" />
+        <h3>Yamaha Minibike 50cc</h3>
+        <p>€850</p>
+      </div>
+      <div class="stock-card" onclick="openModal('brommer2.jpg', 'Peugeot 103', 'Originele Peugeot 103, goed onderhouden, start direct. Prijs: €700')">
+        <img src="brommer2.jpg" alt="Peugeot 103" />
+        <h3>Peugeot 103</h3>
+        <p>€700</p>
+      </div>
+      <!-- Voeg hier meer toe -->
     </div>
   </main>
 
@@ -26,47 +39,54 @@
     &copy; 2025 Mini Mechanics Belgium — Alle rechten voorbehouden.
   </footer>
 
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <img id="modal-img" src="" alt="Brommer afbeelding" />
+      <h2 id="modal-title"></h2>
+      <p id="modal-desc"></p>
+    </div>
+  </div>
+
   <script>
-    // Sample brommers, vervang met jouw eigen data
-    const bikes = [
-      {
-        title: "Peugeot 103",
-        desc: "Klassieke brommer in goede staat.",
-        price: 750,
-        img: "https://cdn.pixabay.com/photo/2016/11/29/10/07/moped-1869946_1280.jpg",
-        status: "Gebruikt"
-      },
-      {
-        title: "Tomos A35",
-        desc: "Sportieve brommer, start direct.",
-        price: 900,
-        img: "https://cdn.pixabay.com/photo/2018/01/20/08/11/moped-3095833_1280.jpg",
-        status: "Gebruikt"
-      },
-      {
-        title: "Batavus Bromfiets",
-        desc: "Zeer goed onderhouden, nieuwe banden.",
-        price: 1100,
-        img: "https://cdn.pixabay.com/photo/2017/08/30/22/30/bike-2690304_1280.jpg",
-        status: "Nieuw"
-      }
-    ];
+    // Fade-in scroll observer (reuse)
+    const faders = document.querySelectorAll('.fade-scroll');
 
-    const stockGrid = document.getElementById('stockGrid');
+    const appearOptions = {
+      threshold: 0,
+      rootMargin: "0px 0px -100px 0px"
+    };
 
-    bikes.forEach(bike => {
-      const card = document.createElement('div');
-      card.className = 'stock-card';
-      card.innerHTML = `
-        <img src="${bike.img}" alt="${bike.title}" />
-        <div class="stock-card-content">
-          <h3>${bike.title}</h3>
-          <p>${bike.desc}</p>
-          <p><strong>€${bike.price}</strong> - ${bike.status}</p>
-        </div>
-      `;
-      stockGrid.appendChild(card);
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
     });
+
+    // Modal logic
+    function openModal(imgSrc, title, desc) {
+      document.getElementById('modal-img').src = imgSrc;
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-desc').textContent = desc;
+      document.getElementById('modal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+      if (event.target === document.getElementById('modal')) {
+        closeModal();
+      }
+    }
   </script>
 </body>
 </html>
