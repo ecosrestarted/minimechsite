@@ -91,6 +91,28 @@
     line-height: 1.4;
   }
 
+  .images-container {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .images-container img {
+    max-width: 200px;
+    height: auto; /* Keep aspect ratio */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(35, 134, 54, 0.5);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .images-container img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(35, 134, 54, 0.8);
+  }
+
   .download-btn {
     display: inline-block;
     background: #238636;
@@ -112,27 +134,6 @@
     background: #2ea043;
     box-shadow: 0 12px 25px rgba(46,160,67,0.7);
     transform: translateY(-3px);
-  }
-
-  .images-container {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .images-container img {
-    max-width: 200px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(35, 134, 54, 0.5);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-  }
-
-  .images-container img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(35, 134, 54, 0.8);
   }
 
   /* Animations */
@@ -190,16 +191,16 @@
       </div>
     </div>
 
-    <a href="https://discord.com/channels/1401598647493201931/1401683728526475274" 
-       class="download-btn" target="_blank" rel="noopener noreferrer">
-       Download Now
-    </a>
-
     <div class="images-container">
       <img src="https://media.discordapp.net/attachments/1403551835087700088/1403792726926823476/image-1.png?ex=6898d75b&is=689785db&hm=b78e7635375a6f99ba9ef5010120c3717cfbe99dd4e669eeacff01cb6c528076&=&format=webp&quality=lossless" alt="Screenshot 1" />
       <img src="https://media.discordapp.net/attachments/1403551835087700088/1403792727573008628/image.png?ex=6898d75b&is=689785db&hm=ff429d57c95a1cab7fefca37b9a1201c7f759eb575f7acd05fa5cf988452174b&=&format=webp&quality=lossless" alt="Screenshot 2" />
       <img src="https://media.discordapp.net/attachments/1403551835087700088/1403792727573008628/image.png?ex=6898d75b&is=689785db&hm=ff429d57c95a1cab7fefca37b9a1201c7f759eb575f7acd05fa5cf988452174b&=&format=webp&quality=lossless" alt="Screenshot 3" />
     </div>
+
+    <a href="https://discord.com/channels/1401598647493201931/1401683728526475274" 
+       class="download-btn" target="_blank" rel="noopener noreferrer">
+       Download Now
+    </a>
   </div>
 
   <script>
