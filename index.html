@@ -102,11 +102,12 @@
   }
 
   .images-container img {
-    width: 320px;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 0 20px #58a6ff66;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 320px;  /* max width so they don’t get huge */
+  width: auto;       /* width adjusts automatically */
+  height: auto;      /* height adjusts to keep ratio */
+  border-radius: 12px;
+  box-shadow: 0 0 20px #58a6ff66;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
   .images-container img:hover {
