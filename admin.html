@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mini Mechanics Admin - Voeg brommer toe</title>
+<style>
+  body {
+    background: #1e272e;
+    color: #d1d8e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 1rem;
+  }
+  h1 {
+    text-align: center;
+    color: #f39c12;
+  }
+  form {
+    max-width: 500px;
+    margin: 2rem auto;
+    background: #34495e;
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+  label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+  }
+  textarea {
+    resize: vertical;
+  }
+  input[type="file"] {
+    margin-top: 0.5rem;
+  }
+  button {
+    margin-top: 1.5rem;
+    width: 100%;
+    background: #f39c12;
+    color: #1e272e;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #e67e22;
+  }
+  #message {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 700;
+  }
+  #stock-list {
+    max-width: 700px;
+    margin: 2rem auto;
+    background: #2f3640;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  .bike-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    background: #3c4a5a;
+    padding: 0.5rem;
+    border-radius: 6px;
+    align-items: center;
+  }
+  .bike-item img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  .bike-details {
+    flex-grow: 1;
+  }
+  .bike-title {
+    font-weight: 700;
+    color: #f39c12;
+  }
+</style>
+</head>
+<body>
+  <h1>Mini Mechanics Admin - Brommer Toevoegen</h1>
+
+  <form id="addBikeForm">
+    <label for="title">Titel</label>
+    <input type="text" id="title" name="title" required placeholder="Brommer naam" />
+
+    <label for="desc">Beschrijving</label>
+    <textarea id="desc" name="desc" rows="3" required placeholder="Beschrijving"></textarea>
+
+    <label for="price">Prijs (€)</label>
+    <input type="number" id="price" name="price" required min="0" step="0.01" placeholder="Prijs in euro" />
+
+    <label for="status">Status</label>
+    <select id="status" name="status" required>
+      <option value="Beschikbaar">Beschikbaar</option>
+      <option value="Verkocht">Verkocht</option>
+    </select>
+
+    <label for="image">Foto uploaden</label>
+    <input type="file" id="image" accept="image/*" required />
+
+    <button type="submit">Brommer toevoegen</button>
+  </form>
+
+  <div id="message"></div>
+
+  <div id="stock-list">
+    <h2>Stock overzicht</h2>
+    <!-- Hier verschijnen de brommers -->
+  </div>
+
+<script>
+  // Vul hieronder je eigen Cloudinary-gegevens in:
+  const cloudName = 'duzqy73h2'; // bv: 'minimechanics'
+  const uploadPreset = 'minimech_unsigned'; // unsigned upload preset
+
+  const form = document.getElementById('addBikeForm');
+  const message = document.getElementById('message');
+  const stockList = document.getElementById('stock-list');
+
+  // Opslaan van brommers lokaal in geheugen (dit gaat verloren bij refresh)
+  const bikes = [];
+
+  function renderBikes() {
+    const container = document.createElement('div');
+    container.innerHTML = '';
+    // empty current list items:
+    stockList.querySelectorAll('.bike-item').forEach(e => e.remove());
+
+    bikes.forEach(bike => {
+      const bikeDiv = document.createElement('div');
+      bikeDiv.className = 'bike-item';
+
+      const img = document.createElement('img');
+      img.src = bike.img;
+      img.alt = bike.title;
+
+      const details = document.createElement('div');
+      details.className = 'bike-details';
+      details.innerHTML = `
+        <div class="bike-title">${bike.title}</div>
+        <div>${bike.desc}</div>
+        <div>€${bike.price}</div>
+        <div>Status: ${bike.status}</div>
+      `;
+
+      bikeDiv.appendChild(img);
+      bikeDiv.appendChild(details);
+      stockList.appendChild(bikeDiv);
+    });
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    message.textContent = 'Upload bezig...';
+
+    const fileInput = document.getElementById('image');
+    const file = fileInput.files[0];
+    if (!file) {
+      message.textContent = 'Selecteer een foto.';
+      return;
+    }
+
+    // Upload naar Cloudinary
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', uploadPreset);
+
+    try {
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/upload`, {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+
+      if (data.secure_url) {
+        const newBike = {
+          title: form.title.value,
+          desc: form.desc.value,
+          price: parseFloat(form.price.value).toFixed(2),
+          status: form.status.value,
+          img: data.secure_url
+        };
+        bikes.push(newBike);
+        renderBikes();
+
+        message.style.color = '#2ecc71';
+        message.textContent = 'Brommer toegevoegd!';
+
+        form.reset();
+      } else {
+        message.style.color = '#e74c3c';
+        message.textContent = 'Upload mislukt, probeer opnieuw.';
+      }
+    } catch(err) {
+      message.style.color = '#e74c3c';
+      message.textContent = 'Fout bij upload: ' + err.message;
+    }
+  });
+</script>
+</body>
+</html>
