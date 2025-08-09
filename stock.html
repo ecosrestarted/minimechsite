@@ -6,22 +6,22 @@
 <title>Mini Mechanics Belgium - Shop</title>
 <style>
   body {
-    background: #0d1f3f; /* donker blauw */
-    color: #d9f0b8;
+    background: #1f2e1f;
+    color: #c9d6b9;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0; padding: 0;
     min-height: 100vh;
     display: flex; flex-direction: column;
   }
   header {
-    background: #102a6d;
+    background: #406040;
     padding: 1rem 2rem;
   }
   nav {
     display: flex; gap: 2rem; justify-content: center;
   }
   nav a {
-    color: #a5c49d;
+    color: #d9f0b8;
     text-decoration: none;
     font-weight: 600;
     font-size: 1.1rem;
@@ -29,247 +29,188 @@
     border-radius: 5px;
   }
   nav a.active, nav a:hover {
-    background: #a5c49d;
-    color: #102a6d;
+    background: #d9f0b8;
+    color: #406040;
   }
   main {
     flex-grow: 1;
-    max-width: 1000px;
-    margin: 2rem auto;
+    max-width: 900px;
+    margin: 3rem auto;
     padding: 0 1rem;
   }
-  h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #a5c49d;
-  }
-
-  #stock-grid {
+  .stock-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+    gap: 1rem;
   }
   .bike-card {
-    background: #1b2a6f;
+    background: #34495e;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    transition: transform 0.2s ease;
   }
   .bike-card:hover {
     transform: scale(1.05);
   }
-  .bike-card img {
+  .bike-img {
     width: 100%;
-    aspect-ratio: 4/3;
+    height: 180px;
     object-fit: cover;
+    display: block;
   }
-  .bike-card .info {
-    padding: 0.8rem 1rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .bike-info {
+    padding: 0.75rem 1rem;
+    color: #d9f0b8;
   }
   .bike-title {
     font-weight: 700;
-    color: #cbe3b0;
+    font-size: 1.2rem;
     margin-bottom: 0.3rem;
   }
-  .bike-price {
-    font-weight: 600;
-    color: #8cd67d;
+  .bike-desc {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
   }
-
-  /* Modal */
-  #modal-bg {
-    position: fixed;
-    top:0; left:0; width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.85);
+  .bike-price {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #f39c12;
+  }
+  /* Modal styles */
+  #modal {
     display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
-    z-index: 200;
-    padding: 1rem;
   }
-  #modal-bg.active {
-    display: flex;
-  }
-  #modal-content {
-    background: #1b2a6f;
-    border-radius: 12px;
-    max-width: 700px;
-    width: 100%;
+  #modalContent {
+    background: #34495e;
+    border-radius: 8px;
+    max-width: 600px;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.8);
+    padding: 1rem;
+    color: #d9f0b8;
     position: relative;
-    color: #d9f0b8;
   }
-  #modal-content img {
+  #modalContent img {
     width: 100%;
-    border-radius: 12px 12px 0 0;
-    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 1rem;
   }
-  #modal-content .modal-info {
-    padding: 1rem 1.5rem 2rem 1.5rem;
-  }
-  #modal-content h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.8rem;
-  }
-  #modal-content p {
-    margin-bottom: 0.5rem;
-  }
-  #modal-content .price {
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: #a8e075;
-  }
-  #modal-content .status {
-    font-style: italic;
-    margin-top: 0.5rem;
-    color: #b2d88b;
-  }
-  #modal-close {
+  #modalClose {
     position: absolute;
-    top: 8px;
-    right: 12px;
-    background: transparent;
-    border: none;
-    color: #d9f0b8;
-    font-size: 2rem;
+    top: 0.5rem; right: 0.5rem;
+    font-size: 1.5rem;
+    color: #f39c12;
     cursor: pointer;
-    font-weight: 900;
-    padding: 0 5px 5px 5px;
-    line-height: 1;
-  }
-  #modal-close:hover {
-    color: #a5c49d;
-  }
-  footer {
-    background: #102a6d;
-    text-align: center;
-    padding: 1rem 0;
-    font-size: 0.9rem;
-    color: #a5c49d;
+    font-weight: 700;
   }
 </style>
 </head>
 <body>
 <header>
   <nav>
-    <a href="home.html">Home</a>
+    <a href="index.html">Home</a>
     <a href="stock.html" class="active">Shop</a>
     <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
   </nav>
 </header>
 
 <main>
-  <h2>Onze minibikes</h2>
-  <div id="stock-grid" aria-label="Mini bikes voorraad"></div>
+  <h1>Onze Brommertjes</h1>
+  <div class="stock-grid" id="stockGrid">
+    <!-- Bikes komen hier -->
+  </div>
 </main>
 
-<footer>
-  &copy; 2025 Mini Mechanics Belgium — Sigma's brommertjes en hobby
-</footer>
-
-<div id="modal-bg" aria-hidden="true" role="dialog" aria-modal="true">
-  <div id="modal-content">
-    <button id="modal-close" aria-label="Sluit modal">&times;</button>
-    <img id="modal-img" src="" alt="Mini bike afbeelding" />
-    <div class="modal-info">
-      <h3 id="modal-title"></h3>
-      <p id="modal-desc"></p>
-      <p class="price" id="modal-price"></p>
-      <p class="status" id="modal-status"></p>
-    </div>
+<!-- Modal -->
+<div id="modal">
+  <div id="modalContent">
+    <span id="modalClose">&times;</span>
+    <img src="" alt="Bike Foto" id="modalImg" />
+    <h2 id="modalTitle"></h2>
+    <p id="modalDesc"></p>
+    <p><strong>Prijs:</strong> €<span id="modalPrice"></span></p>
+    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
   </div>
 </div>
 
 <script>
-  const bikes = [
+  // Simpele demo brommertjes — je kan die vervangen of vullen vanuit backend of admin
+  const bikes = JSON.parse(localStorage.getItem('bikes')) || [
     {
-      id: 1,
-      title: "Yamaha PW50",
-      price: "€850",
-      desc: "Perfect voor beginners, licht en betrouwbaar. 2-takt minibike, superleuk om mee te starten.",
-      status: "Beschikbaar",
-      img: "https://cdn.pixabay.com/photo/2017/09/05/22/11/motorbike-2715443_1280.jpg"
+      title: 'Yamaha PW50',
+      desc: 'Perfect voor beginners, betrouwbaar minibike met 50cc motor.',
+      price: '450.00',
+      status: 'Beschikbaar',
+      img: 'https://res.cloudinary.com/demo/image/upload/v1610000000/pw50.jpg'
     },
     {
-      id: 2,
-      title: "Honda CRF50F",
-      price: "€1100",
-      desc: "Een stoere minibike, makkelijk te onderhouden en ideaal voor jongere rijders.",
-      status: "Beschikbaar",
-      img: "https://cdn.pixabay.com/photo/2018/06/25/15/11/motorcycle-3491090_1280.jpg"
-    },
-    {
-      id: 3,
-      title: "Polini Minibike",
-      price: "€950",
-      desc: "Compact en snel, een echte eyecatcher voor minibike fans.",
-      status: "Verkocht",
-      img: "https://cdn.pixabay.com/photo/2016/11/29/10/07/motorcycle-1869184_1280.jpg"
+      title: 'Honda CRF50',
+      desc: 'Stoere kleine brommer, makkelijk te onderhouden.',
+      price: '480.00',
+      status: 'Verkocht',
+      img: 'https://res.cloudinary.com/demo/image/upload/v1610000000/crf50.jpg'
     }
   ];
 
-  const stockGrid = document.getElementById('stock-grid');
+  const stockGrid = document.getElementById('stockGrid');
+  const modal = document.getElementById('modal');
+  const modalClose = document.getElementById('modalClose');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalPrice = document.getElementById('modalPrice');
+  const modalStatus = document.getElementById('modalStatus');
 
-  bikes.forEach(bike => {
-    const card = document.createElement('article');
-    card.className = 'bike-card';
-    card.setAttribute('tabindex', '0');
-    card.innerHTML = `
-      <img src="${bike.img}" alt="${bike.title}" />
-      <div class="info">
-        <h3 class="bike-title">${bike.title}</h3>
-        <p class="bike-price">${bike.price}</p>
-      </div>
-    `;
-    card.addEventListener('click', () => openModal(bike));
-    card.addEventListener('keypress', e => {
-      if(e.key === 'Enter' || e.key === ' ') openModal(bike);
+  function renderStock() {
+    stockGrid.innerHTML = '';
+    bikes.forEach((bike, i) => {
+      const card = document.createElement('div');
+      card.className = 'bike-card';
+      card.innerHTML = `
+        <img class="bike-img" src="${bike.img}" alt="${bike.title}" />
+        <div class="bike-info">
+          <div class="bike-title">${bike.title}</div>
+          <div class="bike-desc">${bike.desc}</div>
+          <div class="bike-price">€${bike.price}</div>
+          <div>Status: ${bike.status}</div>
+        </div>
+      `;
+      card.onclick = () => openModal(i);
+      stockGrid.appendChild(card);
     });
-    stockGrid.appendChild(card);
-  });
+  }
 
-  // Modal elements
-  const modalBg = document.getElementById('modal-bg');
-  const modalCloseBtn = document.getElementById('modal-close');
-  const modalImg = document.getElementById('modal-img');
-  const modalTitle = document.getElementById('modal-title');
-  const modalDesc = document.getElementById('modal-desc');
-  const modalPrice = document.getElementById('modal-price');
-  const modalStatus = document.getElementById('modal-status');
-
-  function openModal(bike) {
+  function openModal(index) {
+    const bike = bikes[index];
     modalImg.src = bike.img;
-    modalImg.alt = bike.title;
     modalTitle.textContent = bike.title;
     modalDesc.textContent = bike.desc;
     modalPrice.textContent = bike.price;
-    modalStatus.textContent = bike.status === "Beschikbaar" ? "Op voorraad" : "Niet beschikbaar";
-    modalBg.classList.add('active');
-    modalBg.setAttribute('aria-hidden', 'false');
+    modalStatus.textContent = bike.status;
+    modal.style.display = 'flex';
   }
 
-  function closeModal() {
-    modalBg.classList.remove('active');
-    modalBg.setAttribute('aria-hidden', 'true');
-  }
+  modalClose.onclick = () => {
+    modal.style.display = 'none';
+  };
 
-  modalCloseBtn.addEventListener('click', closeModal);
-  modalBg.addEventListener('click', e => {
-    if (e.target === modalBg) closeModal();
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === "Escape" && modalBg.classList.contains('active')) closeModal();
-  });
+  window.onclick = e => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  };
+
+  renderStock();
 </script>
 </body>
 </html>
