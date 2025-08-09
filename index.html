@@ -6,7 +6,6 @@
 <title>ERLC PMS - ERLC Python Macro Scripts</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
@@ -17,171 +16,97 @@
     user-select: none;
     overflow-x: hidden;
   }
-
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
+  .container { max-width: 1100px; margin: 0 auto; text-align: center; }
   header {
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #58a6ff;
-    margin-bottom: 0.5rem;
-    animation: fadeInDown 1s ease forwards;
-    opacity: 0;
+    font-size: 3.5rem; font-weight: 700; color: #58a6ff;
+    margin-bottom: 0.5rem; animation: fadeInDown 1s ease forwards; opacity: 0;
   }
-
   h2 {
-    color: #8b949e;
-    font-weight: 400;
-    font-size: 1.6rem;
-    margin-bottom: 3rem;
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 0.3s;
-    opacity: 0;
+    color: #8b949e; font-weight: 400; font-size: 1.6rem;
+    margin-bottom: 3rem; animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.3s; opacity: 0;
   }
-
   .features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2.5rem;
-    margin-bottom: 4rem;
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 0.6s;
-    opacity: 0;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem;
+    margin-bottom: 4rem; animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.6s; opacity: 0;
   }
-
   .feature {
-    background: #21262d;
-    border-radius: 15px;
-    padding: 2rem 2.5rem;
-    width: 280px;
-    box-shadow: 0 0 20px #58a6ff66;
-    transition: transform 0.35s, box-shadow 0.35s;
-    cursor: default;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    background: #21262d; border-radius: 15px; padding: 2rem 2.5rem; width: 280px;
+    box-shadow: 0 0 20px #58a6ff66; transition: transform 0.35s, box-shadow 0.35s;
+    cursor: default; display: flex; flex-direction: column; justify-content: flex-start;
   }
+  .feature:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 0 40px #58a6ffcc; }
+  .feature h3 { color: #58a6ff; margin-bottom: 1rem; font-weight: 700; font-size: 1.6rem; }
+  .feature p { font-size: 1.1rem; color: #8b949e; flex-grow: 1; line-height: 1.4; }
 
-  .feature:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 0 40px #58a6ffcc;
-  }
-
-  .feature h3 {
-    color: #58a6ff;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    font-size: 1.6rem;
-  }
-
-  .feature p {
-    font-size: 1.1rem;
-    color: #8b949e;
-    flex-grow: 1;
-    line-height: 1.4;
-  }
-
+  /* Image grid */
   .images-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 0.8s;
-    opacity: 0;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; margin-bottom: 2rem;
+    animation: fadeInUp 1s ease forwards; animation-delay: 0.8s; opacity: 0;
   }
-
   .images-grid img {
-    width: 100%;
-    height: auto; /* keeps aspect ratio */
-    border-radius: 10px;
-    box-shadow: 0 0 15px #00000055;
+    width: 100%; height: auto; border-radius: 10px;
+    box-shadow: 0 0 15px #00000055; cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+  .images-grid img:hover { transform: scale(1.05); box-shadow: 0 0 30px #00000088; }
 
-  .images-grid img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 30px #00000088;
+  /* Popup (lightbox) */
+  .popup {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+    z-index: 999; justify-content: center; align-items: center;
+  }
+  .popup img {
+    max-width: 90%; max-height: 90%; border-radius: 10px;
+    box-shadow: 0 0 30px #000;
+  }
+  .popup.show { display: flex; }
+  .popup:after {
+    content: '×'; position: absolute; top: 20px; right: 35px;
+    font-size: 3rem; color: white; cursor: pointer;
+    font-weight: bold; line-height: 1;
   }
 
   .download-btn {
-    display: inline-block;
-    background: #238636;
-    color: white;
-    padding: 1.4rem 3rem;
-    font-weight: 700;
-    font-size: 1.3rem;
-    border-radius: 10px;
-    text-decoration: none;
+    display: inline-block; background: #238636; color: white;
+    padding: 1.4rem 3rem; font-weight: 700; font-size: 1.3rem;
+    border-radius: 10px; text-decoration: none;
     box-shadow: 0 8px 15px rgba(35,134,54,0.4);
     transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 1s;
-    opacity: 0;
+    animation: fadeInUp 1s ease forwards; animation-delay: 1s; opacity: 0;
     user-select: none;
   }
-
   .download-btn:hover {
-    background: #2ea043;
-    box-shadow: 0 12px 25px rgba(46,160,67,0.7);
+    background: #2ea043; box-shadow: 0 12px 25px rgba(46,160,67,0.7);
     transform: translateY(-3px);
   }
 
-  @keyframes fadeInDown {
-    0% { opacity: 0; transform: translateY(-40px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-40px); } 100% { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 
   canvas#particles {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
   }
 
   @media (max-width: 720px) {
-    .features {
-      flex-direction: column;
-      align-items: center;
-    }
-    .feature {
-      width: 90%;
-      max-width: 320px;
-    }
+    .features { flex-direction: column; align-items: center; }
+    .feature { width: 90%; max-width: 320px; }
   }
 </style>
 </head>
 <body>
   <canvas id="particles"></canvas>
-
   <div class="container">
     <header>ERLC PMS</header>
     <h2>ERLC Python Macro Scripts</h2>
 
     <div class="features">
-      <div class="feature">
-        <h3>Simplicity</h3>
-        <p>Easy to install and use. No nonsense.</p>
-      </div>
-      <div class="feature">
-        <h3>Efficiency</h3>
-        <p>Optimized scripts that run smoothly and fast.</p>
-      </div>
-      <div class="feature">
-        <h3>Safe</h3>
-        <p>Minimizes detection risk with smart delays.</p>
-      </div>
+      <div class="feature"><h3>Simplicity</h3><p>Easy to install and use. No nonsense.</p></div>
+      <div class="feature"><h3>Efficiency</h3><p>Optimized scripts that run smoothly and fast.</p></div>
+      <div class="feature"><h3>Safe</h3><p>Minimizes detection risk with smart delays.</p></div>
     </div>
 
     <div id="imageGrid" class="images-grid"></div>
@@ -192,21 +117,29 @@
     </a>
   </div>
 
-  <script>
-    // Images from /images folder
-    const imageFiles = [
-      'image-1.png',
-      'image-2.png',
-      'image-3.png'
-    ];
+  <!-- Popup -->
+  <div id="popup" class="popup">
+    <img src="" alt="popup">
+  </div>
 
+  <script>
+    const imageFiles = ['image-1.png', 'image-2.png', 'image-3.png'];
     const grid = document.getElementById('imageGrid');
+    const popup = document.getElementById('popup');
+    const popupImg = popup.querySelector('img');
+
     imageFiles.forEach(file => {
       const img = document.createElement('img');
       img.src = `images/${file}`;
       img.alt = file;
+      img.addEventListener('click', () => {
+        popupImg.src = img.src;
+        popup.classList.add('show');
+      });
       grid.appendChild(img);
     });
+
+    popup.addEventListener('click', () => popup.classList.remove('show'));
 
     // Particle background
     const canvas = document.getElementById('particles');
@@ -218,11 +151,8 @@
       canvas.height = window.innerHeight;
       particlesArray = [];
       const numberOfParticles = Math.floor(canvas.width / 10);
-      for (let i = 0; i < numberOfParticles; i++) {
-        particlesArray.push(new Particle());
-      }
+      for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
     }
-
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -233,8 +163,7 @@
         this.color = 'rgba(88,166,255,0.7)';
       }
       update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+        this.x += this.speedX; this.y += this.speedY;
         if(this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
         if(this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
       }
@@ -245,37 +174,27 @@
         ctx.fill();
       }
     }
-
     function handleParticles() {
       for(let i=0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
+        particlesArray[i].update(); particlesArray[i].draw();
         for(let j = i+1; j < particlesArray.length; j++) {
           const dx = particlesArray[i].x - particlesArray[j].x;
           const dy = particlesArray[i].y - particlesArray[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distance = Math.sqrt(dx*dx + dy*dy);
           if(distance < 120) {
-            ctx.strokeStyle = 'rgba(88,166,255,0.15)';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
-            ctx.stroke();
+            ctx.strokeStyle = 'rgba(88,166,255,0.15)'; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+            ctx.lineTo(particlesArray[j].x, particlesArray[j].y); ctx.stroke();
           }
         }
       }
     }
-
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       handleParticles();
       requestAnimationFrame(animate);
     }
-
-    window.addEventListener('resize', () => {
-      init();
-    });
-
+    window.addEventListener('resize', init);
     init();
     animate();
   </script>
