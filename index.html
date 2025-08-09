@@ -91,9 +91,10 @@
     line-height: 1.4;
   }
 
-  .images-container {
-    display: flex;
-    justify-content: center;
+  /* New images grid container */
+  .images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
     animation: fadeInUp 1s ease forwards;
@@ -101,16 +102,17 @@
     opacity: 0;
   }
 
-  .images-container img {
-  max-width: auto;  /* max width so they don’t get huge */
-  width: auto;       /* width adjusts automatically */
-  height: auto;      /* height adjusts to keep ratio */
-  border-radius: 12px;
-  box-shadow: 0 0 20px #58a6ff66;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .images-grid img {
+    width: 100%;
+    height: auto;        /* keep original aspect ratio */
+    border-radius: 12px;
+    box-shadow: 0 0 20px #58a6ff66;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: contain;
+    cursor: default;
   }
 
-  .images-container img:hover {
+  .images-grid img:hover {
     transform: scale(1.05);
     box-shadow: 0 0 40px #58a6ffcc;
   }
@@ -168,13 +170,9 @@
       width: 90%;
       max-width: 320px;
     }
-    .images-container {
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .images-container img {
-      width: 90%;
-      max-width: 320px;
+    .images-grid {
+      grid-template-columns: 1fr; /* single column on small screens */
+      gap: 1rem;
     }
   }
 </style>
@@ -193,7 +191,7 @@
       </div>
       <div class="feature">
         <h3>Efficiency</h3>
-        <p>Optimized scripts that run smooth and fast.</p>
+        <p>Optimized scripts running smooth and fast.</p>
       </div>
       <div class="feature">
         <h3>Safe</h3>
@@ -201,10 +199,11 @@
       </div>
     </div>
 
-    <div class="images-container">
+    <!-- Images grid above the download button -->
+    <div class="images-grid">
       <img src="images/image-1.png" alt="Screenshot 1" />
-      <img src="images/image-2.png" alt="Screenshot 2" />
-      <img src="images/image-3.png" alt="Screenshot 3" />
+      <img src="images/image.png" alt="Screenshot 2" />
+      <img src="images/image.png" alt="Screenshot 3" />
     </div>
 
     <a href="https://discord.com/channels/1401598647493201931/1401683728526475274" 
