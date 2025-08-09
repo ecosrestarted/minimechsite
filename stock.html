@@ -1,216 +1,72 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mini Mechanics Belgium - Shop</title>
-<style>
-  body {
-    background: #1f2e1f;
-    color: #c9d6b9;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 0;
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-  }
-  header {
-    background: #406040;
-    padding: 1rem 2rem;
-  }
-  nav {
-    display: flex; gap: 2rem; justify-content: center;
-  }
-  nav a {
-    color: #d9f0b8;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 5px;
-  }
-  nav a.active, nav a:hover {
-    background: #d9f0b8;
-    color: #406040;
-  }
-  main {
-    flex-grow: 1;
-    max-width: 900px;
-    margin: 3rem auto;
-    padding: 0 1rem;
-  }
-  .stock-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-    gap: 1rem;
-  }
-  .bike-card {
-    background: #34495e;
-    border-radius: 10px;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-    transition: transform 0.2s ease;
-  }
-  .bike-card:hover {
-    transform: scale(1.05);
-  }
-  .bike-img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    display: block;
-  }
-  .bike-info {
-    padding: 0.75rem 1rem;
-    color: #d9f0b8;
-  }
-  .bike-title {
-    font-weight: 700;
-    font-size: 1.2rem;
-    margin-bottom: 0.3rem;
-  }
-  .bike-desc {
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-  }
-  .bike-price {
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #f39c12;
-  }
-  /* Modal styles */
-  #modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0; top: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.8);
-    justify-content: center;
-    align-items: center;
-  }
-  #modalContent {
-    background: #34495e;
-    border-radius: 8px;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 1rem;
-    color: #d9f0b8;
-    position: relative;
-  }
-  #modalContent img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-  }
-  #modalClose {
-    position: absolute;
-    top: 0.5rem; right: 0.5rem;
-    font-size: 1.5rem;
-    color: #f39c12;
-    cursor: pointer;
-    font-weight: 700;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Mechanics Belgium - Stock</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
+
   <nav>
     <a href="index.html">Home</a>
-    <a href="stock.html" class="active">Shop</a>
+    <a href="stock.html" class="active">Stock</a>
+    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    <a href="admin.html">Admin</a>
   </nav>
-</header>
 
-<main>
-  <h1>Onze Brommertjes</h1>
-  <div class="stock-grid" id="stockGrid">
-    <!-- Bikes komen hier -->
-  </div>
-</main>
+  <main>
+    <h1>Onze Stock</h1>
+    <div class="stock-grid" id="stockGrid">
+      <!-- Brommertjes komen hier via JS -->
+    </div>
+  </main>
 
-<!-- Modal -->
-<div id="modal">
-  <div id="modalContent">
-    <span id="modalClose">&times;</span>
-    <img src="" alt="Bike Foto" id="modalImg" />
-    <h2 id="modalTitle"></h2>
-    <p id="modalDesc"></p>
-    <p><strong>Prijs:</strong> €<span id="modalPrice"></span></p>
-    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
-  </div>
-</div>
+  <footer>
+    &copy; 2025 Mini Mechanics Belgium — Alle rechten voorbehouden.
+  </footer>
 
-<script>
-  // Simpele demo brommertjes — je kan die vervangen of vullen vanuit backend of admin
-  const bikes = JSON.parse(localStorage.getItem('bikes')) || [
-    {
-      title: 'Yamaha PW50',
-      desc: 'Perfect voor beginners, betrouwbaar minibike met 50cc motor.',
-      price: '450.00',
-      status: 'Beschikbaar',
-      img: 'https://res.cloudinary.com/demo/image/upload/v1610000000/pw50.jpg'
-    },
-    {
-      title: 'Honda CRF50',
-      desc: 'Stoere kleine brommer, makkelijk te onderhouden.',
-      price: '480.00',
-      status: 'Verkocht',
-      img: 'https://res.cloudinary.com/demo/image/upload/v1610000000/crf50.jpg'
-    }
-  ];
+  <script>
+    // Sample brommers, vervang met jouw eigen data
+    const bikes = [
+      {
+        title: "Peugeot 103",
+        desc: "Klassieke brommer in goede staat.",
+        price: 750,
+        img: "https://cdn.pixabay.com/photo/2016/11/29/10/07/moped-1869946_1280.jpg",
+        status: "Gebruikt"
+      },
+      {
+        title: "Tomos A35",
+        desc: "Sportieve brommer, start direct.",
+        price: 900,
+        img: "https://cdn.pixabay.com/photo/2018/01/20/08/11/moped-3095833_1280.jpg",
+        status: "Gebruikt"
+      },
+      {
+        title: "Batavus Bromfiets",
+        desc: "Zeer goed onderhouden, nieuwe banden.",
+        price: 1100,
+        img: "https://cdn.pixabay.com/photo/2017/08/30/22/30/bike-2690304_1280.jpg",
+        status: "Nieuw"
+      }
+    ];
 
-  const stockGrid = document.getElementById('stockGrid');
-  const modal = document.getElementById('modal');
-  const modalClose = document.getElementById('modalClose');
-  const modalImg = document.getElementById('modalImg');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalPrice = document.getElementById('modalPrice');
-  const modalStatus = document.getElementById('modalStatus');
+    const stockGrid = document.getElementById('stockGrid');
 
-  function renderStock() {
-    stockGrid.innerHTML = '';
-    bikes.forEach((bike, i) => {
+    bikes.forEach(bike => {
       const card = document.createElement('div');
-      card.className = 'bike-card';
+      card.className = 'stock-card';
       card.innerHTML = `
-        <img class="bike-img" src="${bike.img}" alt="${bike.title}" />
-        <div class="bike-info">
-          <div class="bike-title">${bike.title}</div>
-          <div class="bike-desc">${bike.desc}</div>
-          <div class="bike-price">€${bike.price}</div>
-          <div>Status: ${bike.status}</div>
+        <img src="${bike.img}" alt="${bike.title}" />
+        <div class="stock-card-content">
+          <h3>${bike.title}</h3>
+          <p>${bike.desc}</p>
+          <p><strong>€${bike.price}</strong> - ${bike.status}</p>
         </div>
       `;
-      card.onclick = () => openModal(i);
       stockGrid.appendChild(card);
     });
-  }
-
-  function openModal(index) {
-    const bike = bikes[index];
-    modalImg.src = bike.img;
-    modalTitle.textContent = bike.title;
-    modalDesc.textContent = bike.desc;
-    modalPrice.textContent = bike.price;
-    modalStatus.textContent = bike.status;
-    modal.style.display = 'flex';
-  }
-
-  modalClose.onclick = () => {
-    modal.style.display = 'none';
-  };
-
-  window.onclick = e => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
-    }
-  };
-
-  renderStock();
-</script>
+  </script>
 </body>
 </html>

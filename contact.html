@@ -1,119 +1,47 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mini Mechanics Belgium - Contact</title>
-<style>
-  body {
-    background: #2a2a3a;
-    color: #c9d6b9;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 0;
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-  }
-  header {
-    background: #406040;
-    padding: 1rem 2rem;
-  }
-  nav {
-    display: flex; gap: 2rem; justify-content: center;
-  }
-  nav a {
-    color: #d9f0b8;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 5px;
-  }
-  nav a.active, nav a:hover {
-    background: #d9f0b8;
-    color: #406040;
-  }
-  main {
-    flex-grow: 1;
-    max-width: 600px;
-    margin: 3rem auto;
-    padding: 0 1rem;
-    text-align: center;
-  }
-  form {
-    background: #34495e;
-    padding: 1.5rem;
-    border-radius: 10px;
-    color: #d9f0b8;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  input, textarea {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: none;
-  }
-  button {
-    background: #d9f0b8;
-    border: none;
-    padding: 0.75rem;
-    font-weight: 700;
-    cursor: pointer;
-    border-radius: 5px;
-    color: #406040;
-    transition: background 0.2s ease;
-  }
-  button:hover {
-    background: #b7ce88;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Mechanics Belgium - Contact</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
+
   <nav>
     <a href="index.html">Home</a>
-    <a href="stock.html">Shop</a>
+    <a href="stock.html">Stock</a>
+    <a href="about.html">About</a>
     <a href="contact.html" class="active">Contact</a>
-    <a href="admin.html">Admin</a>
   </nav>
-</header>
 
-<main>
-  <h1>Contacteer mij</h1>
-  <form id="contactForm">
-    <input type="text" placeholder="Naam" id="name" required />
-    <input type="email" placeholder="Email" id="email" required />
-    <textarea id="message" rows="5" placeholder="Bericht" required></textarea>
-    <button type="submit">Verstuur</button>
-  </form>
-  <p id="formStatus" style="margin-top:1rem;"></p>
-</main>
+  <main>
+    <h1>Contacteer mij</h1>
+    <form onsubmit="return sendMessage(event)">
+      <label for="name">Naam</label>
+      <input type="text" id="name" name="name" required />
 
-<script>
-  const form = document.getElementById('contactForm');
-  const statusP = document.getElementById('formStatus');
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
 
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    // Simpele fake contact, gewoon feedback geven
-    const name = form.name.value.trim();
-    const email = form.email.value.trim();
-    const message = form.message.value.trim();
+      <label for="message">Bericht</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
 
-    if (!name || !email || !message) {
-      statusP.textContent = 'Alle velden invullen, ja.';
-      return;
+      <button type="submit">Verzenden</button>
+    </form>
+  </main>
+
+  <footer>
+    &copy; 2025 Mini Mechanics Belgium — Alle rechten voorbehouden.
+  </footer>
+
+  <script>
+    function sendMessage(e) {
+      e.preventDefault();
+      alert('Bedankt voor je bericht! Ik neem zo snel mogelijk contact op.');
+      e.target.reset();
+      return false;
     }
-
-    statusP.textContent = 'Verzenden... (fake)';
-
-    setTimeout(() => {
-      statusP.textContent = `Bedankt, ${name}! Ik neem snel contact op.`;
-      form.reset();
-    }, 1000);
-  });
-</script>
-
+  </script>
 </body>
 </html>

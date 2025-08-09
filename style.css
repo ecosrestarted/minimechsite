@@ -1,0 +1,170 @@
+/* Reset + basics */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #121212;
+  color: #eee;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background: #1f1f1f;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+
+nav a {
+  color: #bbb;
+  text-decoration: none;
+  margin: 0 1.5rem;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+  color: #ff6f61;
+}
+
+nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #ff6f61;
+  border-radius: 2px;
+}
+
+/* Container */
+main {
+  flex: 1;
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* FadeIn */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Home page particle canvas */
+#particles-js {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+}
+
+/* Stock grid */
+.stock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 1.5rem;
+}
+
+.stock-card {
+  background: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(255,111,97,0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stock-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(255,111,97,0.6);
+}
+
+.stock-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.stock-card-content {
+  padding: 1rem;
+}
+
+.stock-card-content h3 {
+  margin-bottom: 0.5rem;
+  color: #ff6f61;
+}
+
+.stock-card-content p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Contact form */
+form {
+  background: #222;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(255,111,97,0.2);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #eee;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: #333;
+  color: #eee;
+  transition: background 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+  background: #444;
+}
+
+form button {
+  background: #ff6f61;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background: #e45b4f;
+}
+
+/* Footer */
+footer {
+  background: #1f1f1f;
+  color: #777;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  margin-top: auto;
+}

@@ -1,87 +1,90 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mini Mechanics Belgium - Home</title>
-<style>
-  body {
-    background: #2a3a2a;
-    color: #c9d6b9;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 0;
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-  }
-  header {
-    background: #406040;
-    padding: 1rem 2rem;
-  }
-  nav {
-    display: flex; gap: 2rem; justify-content: center;
-  }
-  nav a {
-    color: #d9f0b8;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 5px;
-  }
-  nav a.active, nav a:hover {
-    background: #d9f0b8;
-    color: #406040;
-  }
-  main {
-    flex-grow: 1;
-    max-width: 700px;
-    margin: 3rem auto;
-    padding: 0 1rem;
-  }
-  h1, h2 {
-    text-align: center;
-    color: #d9f0b8;
-  }
-  p {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto 1.5rem;
-    text-align: center;
-  }
-  footer {
-    background: #406040;
-    text-align: center;
-    padding: 1rem 0;
-    font-size: 0.9rem;
-    color: #d9f0b8;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Mechanics Belgium - Home</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<header>
+
   <nav>
     <a href="index.html" class="active">Home</a>
-    <a href="stock.html">Shop</a>
+    <a href="stock.html">Stock</a>
+    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    <a href="admin.html">Admin</a>
   </nav>
-</header>
 
-<main>
-  <h1>Welkom bij Mini Mechanics Belgium</h1>
-  <h2>Wie ben ik?</h2>
-  <p>
-    Hey, ik ben Sigma. Mini Mechanics is mijn hobby en passie. Ik werk vooral met brommertjes en minibikes, gewoon voor de fun en om ze weer op de baan te krijgen.
-  </p>
-  <h2>Wat doe ik?</h2>
-  <p>
-    Ik verkoop af en toe een brommertje of minibike, en soms wat onderdelen. Maar het gaat me vooral om de community en het delen van kennis.
-  </p>
-</main>
+  <!-- Particle background -->
+  <div id="particles-js"></div>
 
-<footer>
-  &copy; 2025 Mini Mechanics Belgium — Sigma's brommertjes en hobby
-</footer>
+  <main>
+    <h1>Welkom bij Mini Mechanics Belgium</h1>
+    <p>
+      Ik ben Sigma, een gepassioneerde hobbyist in minibikes. Hier vind je een
+      kleine collectie brommertjes die ik met liefde onderhoud en soms verkoop.
+    </p>
+    <p>
+      Geen fancy shop, maar eerlijk vakmanschap en een persoonlijke touch.
+      Bekijk zeker onze stock en neem contact op als je vragen hebt.
+    </p>
+  </main>
+
+  <footer>
+    &copy; 2025 Mini Mechanics Belgium — Alle rechten voorbehouden.
+  </footer>
+
+  <!-- Particles.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 60,
+          "density": { "enable": true, "value_area": 700 }
+        },
+        "color": { "value": "#ff6f61" },
+        "shape": {
+          "type": "circle",
+          "stroke": { "width": 0, "color": "#000" }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": true
+        },
+        "size": {
+          "value": 4,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ff6f61",
+          "opacity": 0.3,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "grab" },
+          "onclick": { "enable": true, "mode": "push" }
+        },
+        "modes": {
+          "grab": { "distance": 130, "line_linked": { "opacity": 0.7 } },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
 </body>
 </html>
