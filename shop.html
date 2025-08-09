@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mini Mechanics Belgium - Shop</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div>Mini Mechanics Belgium</div>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="shop.html" class="active">Shop</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Onze Brommertjes</h1>
+  <div class="grid" id="stock-grid">
+    <!-- Brommertjes komen hier via JS -->
+  </div>
+</main>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-img" src="" alt="Brommer foto" />
+    <h2 class="modal-title"></h2>
+    <p class="modal-desc"></p>
+    <p><strong>Prijs:</strong> <span class="modal-price"></span></p>
+    <p><strong>Status:</strong> <span class="modal-status"></span></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

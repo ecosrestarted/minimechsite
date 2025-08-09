@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mini Mechanics Belgium - Contact</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mini Mechanics Belgium - Contact</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>Mini Mechanics Belgium</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="stock.html">Stock</a>
-      <a href="about.html">About</a>
-      <a href="contact.html" class="active">Contact</a>
-    </nav>
-  </header>
 
-  <main>
-    <section>
-      <h2>Contact</h2>
-      <form id="contactForm">
-        <label for="name">Naam</label>
-        <input id="name" name="name" type="text" required autocomplete="off" />
+<header>
+  <div>Mini Mechanics Belgium</div>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+</header>
 
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" required autocomplete="off" />
+<main>
+  <h1>Contacteer Mini Mechanics Belgium</h1>
+  <p>Heb je vragen, brommer te koop, of wil je gewoon eens babbelen over minibikes? Stuur me een berichtje.</p>
 
-        <label for="message">Bericht</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
+  <form id="contact-form" action="mailto:your.email@example.com" method="post" enctype="text/plain">
+    <label for="name">Naam</label>
+    <input type="text" id="name" name="name" required />
+    
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="email" required />
+    
+    <label for="message">Bericht</label>
+    <textarea id="message" name="message" required></textarea>
+    
+    <button type="submit">Verstuur</button>
+  </form>
+</main>
 
-        <button type="submit">Verstuur</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 Mini Mechanics Belgium — No bullshit, just minibikes.
-  </footer>
-
-  <script src="main.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
