@@ -1,4 +1,155 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ERLC PMS - ERLC Python Macro Scripts</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  body {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    color: #c9d1d9;
+    font-family: 'Orbitron', sans-serif;
+    line-height: 1.6;
+    padding: 3rem 1rem;
+    user-select: none;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  header {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #58a6ff;
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 1s ease forwards;
+    opacity: 0;
+  }
+
+  h2 {
+    color: #8b949e;
+    font-weight: 400;
+    font-size: 1.6rem;
+    margin-bottom: 3rem;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
+  }
+
+  .feature {
+    background: #21262d;
+    border-radius: 15px;
+    padding: 2rem 2.5rem;
+    width: 280px;
+    box-shadow: 0 0 20px #58a6ff66;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .feature:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 0 40px #58a6ffcc;
+  }
+
+  .feature h3 {
+    color: #58a6ff;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+
+  .feature p {
+    font-size: 1.1rem;
+    color: #8b949e;
+    flex-grow: 1;
+    line-height: 1.4;
+  }
+
+  .download-btn {
+    display: inline-block;
+    background: #238636;
+    color: white;
+    padding: 1.4rem 3rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 8px 15px rgba(35,134,54,0.4);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1s;
+    opacity: 0;
+    user-select: none;
+  }
+
+  .download-btn:hover {
+    background: #2ea043;
+    box-shadow: 0 12px 25px rgba(46,160,67,0.7);
+    transform: translateY(-3px);
+  }
+
+  /* Animations */
+  @keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Particle background */
+  canvas#particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .features {
+      flex-direction: column;
+      align-items: center;
+    }
+    .feature {
+      width: 90%;
+      max-width: 320px;
+    }
+  }
+</style>
+</head>
 <body>
+  <canvas id="particles"></canvas>
+
   <div class="container">
     <header>ERLC PMS</header>
     <h2>ERLC Python Macro Scripts</h2>
@@ -6,18 +157,99 @@
     <div class="features">
       <div class="feature">
         <h3>Simplicity</h3>
-        <p>Easy to install and use. No BS.</p>
+        <p>Eenvoudig te installeren en gebruiken. Geen bullshit.</p>
       </div>
       <div class="feature">
         <h3>Efficiency</h3>
-        <p>Optimized scripts that run smooth and fast.</p>
+        <p>Geoptimaliseerde scripts die soepel en snel draaien.</p>
       </div>
       <div class="feature">
         <h3>Safe</h3>
-        <p>Minimizes risk of getting caught with smart delays.</p>
+        <p>Minimaliseert kans op detectie met slimme delays.</p>
       </div>
     </div>
 
-    <a href="https://discord.com/channels/1401598647493201931/1401683728526475274" class="download-btn" target="_blank" rel="noopener noreferrer">Download Now</a>
+    <a href="https://discord.com/channels/1401598647493201931/1401683728526475274" 
+       class="download-btn" target="_blank" rel="noopener noreferrer">
+       Download Now
+    </a>
   </div>
+
+  <script>
+    // Basic particles background with canvas
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
+
+    function init() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      particlesArray = [];
+      const numberOfParticles = Math.floor(canvas.width / 10);
+
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1;
+        this.speedX = (Math.random() - 0.5) * 0.6;
+        this.speedY = (Math.random() - 0.5) * 0.6;
+        this.color = 'rgba(88,166,255,0.7)';
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if(this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+        if(this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+      }
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function handleParticles() {
+      for(let i=0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+
+        for(let j = i+1; j < particlesArray.length; j++) {
+          const dx = particlesArray[i].x - particlesArray[j].x;
+          const dy = particlesArray[i].y - particlesArray[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if(distance < 120) {
+            ctx.strokeStyle = 'rgba(88,166,255,0.15)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      handleParticles();
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      init();
+    });
+
+    init();
+    animate();
+  </script>
 </body>
+</html>
