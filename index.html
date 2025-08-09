@@ -15,16 +15,13 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- Particle background -->
-  <div id="particles-js"></div>
-
   <main>
-    <h1>Welkom bij Mini Mechanics Belgium</h1>
-    <p>
+    <h1 class="fade-scroll">Welkom bij Mini Mechanics Belgium</h1>
+    <p class="fade-scroll" style="transition-delay: 0.2s;">
       Ik ben Sigma, een gepassioneerde hobbyist in minibikes. Hier vind je een
       kleine collectie brommertjes die ik met liefde onderhoud en soms verkoop.
     </p>
-    <p>
+    <p class="fade-scroll" style="transition-delay: 0.4s;">
       Geen fancy shop, maar eerlijk vakmanschap en een persoonlijke touch.
       Bekijk zeker onze stock en neem contact op als je vragen hebt.
     </p>
@@ -34,56 +31,25 @@
     &copy; 2025 Mini Mechanics Belgium — Alle rechten voorbehouden.
   </footer>
 
-  <!-- Particles.js library -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    particlesJS('particles-js', {
-      "particles": {
-        "number": {
-          "value": 60,
-          "density": { "enable": true, "value_area": 700 }
-        },
-        "color": { "value": "#ff6f61" },
-        "shape": {
-          "type": "circle",
-          "stroke": { "width": 0, "color": "#000" }
-        },
-        "opacity": {
-          "value": 0.5,
-          "random": true
-        },
-        "size": {
-          "value": 4,
-          "random": true
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#ff6f61",
-          "opacity": 0.3,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out"
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": { "enable": true, "mode": "grab" },
-          "onclick": { "enable": true, "mode": "push" }
-        },
-        "modes": {
-          "grab": { "distance": 130, "line_linked": { "opacity": 0.7 } },
-          "push": { "particles_nb": 4 }
-        }
-      },
-      "retina_detect": true
+    // Fade-in scroll observer
+    const faders = document.querySelectorAll('.fade-scroll');
+
+    const appearOptions = {
+      threshold: 0,
+      rootMargin: "0px 0px -100px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
     });
   </script>
 </body>
