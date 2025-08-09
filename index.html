@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -92,11 +92,10 @@
   }
 
   .download-btn {
-    display: inline-flex;
-    align-items: center;
+    display: inline-block;
     background: #238636;
     color: white;
-    padding: 1.4rem 2rem 1.4rem 1rem;
+    padding: 1.4rem 3rem;
     font-weight: 700;
     font-size: 1.3rem;
     border-radius: 10px;
@@ -107,7 +106,6 @@
     animation-delay: 1s;
     opacity: 0;
     user-select: none;
-    gap: 0.75rem;
   }
 
   .download-btn:hover {
@@ -116,26 +114,25 @@
     transform: translateY(-3px);
   }
 
-  /* Own Download Button */
-  .own-download-btn {
-    margin-top: 1.5rem;
-    background: #ff4c4c;
-    box-shadow: 0 8px 15px rgba(255,76,76,0.4);
-    padding-left: 1rem;
-    padding-right: 1.5rem;
-    animation-delay: 1.1s;
+  .images-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
   }
 
-  .own-download-btn:hover {
-    background: #e04343;
-    box-shadow: 0 12px 25px rgba(224,67,67,0.7);
+  .images-container img {
+    max-width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(35, 134, 54, 0.5);
+    transition: transform 0.3s ease;
+    cursor: pointer;
   }
 
-  .own-download-btn img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    margin-right: 0.75rem;
+  .images-container img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(35, 134, 54, 0.8);
   }
 
   /* Animations */
@@ -181,15 +178,15 @@
     <div class="features">
       <div class="feature">
         <h3>Simplicity</h3>
-        <p>Eenvoudig te installeren en gebruiken. Geen bullshit.</p>
+        <p>Easy to install and use. No bullshit.</p>
       </div>
       <div class="feature">
         <h3>Efficiency</h3>
-        <p>Geoptimaliseerde scripts die soepel en snel draaien.</p>
+        <p>Optimized scripts that run smooth and fast.</p>
       </div>
       <div class="feature">
         <h3>Safe</h3>
-        <p>Minimaliseert kans op detectie met slimme delays.</p>
+        <p>Minimizes detection risk with smart delays.</p>
       </div>
     </div>
 
@@ -198,11 +195,11 @@
        Download Now
     </a>
 
-    <a href="https://media.discordapp.net/attachments/1403551835087700088/1403788422845563091/image.png" 
-       class="download-btn own-download-btn" target="_blank" rel="noopener noreferrer">
-       <img src="https://media.discordapp.net/attachments/1403551835087700088/1403788422845563091/image.png" alt="Own Download Icon" />
-       Own Download
-    </a>
+    <div class="images-container">
+      <img src="https://media.discordapp.net/attachments/1403551835087700088/1403792726926823476/image-1.png?ex=6898d75b&is=689785db&hm=b78e7635375a6f99ba9ef5010120c3717cfbe99dd4e669eeacff01cb6c528076&=&format=webp&quality=lossless" alt="Screenshot 1" />
+      <img src="https://media.discordapp.net/attachments/1403551835087700088/1403792727573008628/image.png?ex=6898d75b&is=689785db&hm=ff429d57c95a1cab7fefca37b9a1201c7f759eb575f7acd05fa5cf988452174b&=&format=webp&quality=lossless" alt="Screenshot 2" />
+      <img src="https://media.discordapp.net/attachments/1403551835087700088/1403792727573008628/image.png?ex=6898d75b&is=689785db&hm=ff429d57c95a1cab7fefca37b9a1201c7f759eb575f7acd05fa5cf988452174b&=&format=webp&quality=lossless" alt="Screenshot 3" />
+    </div>
   </div>
 
   <script>
