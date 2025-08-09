@@ -6,239 +6,143 @@
 <title>ERLC PMS - ERLC Python Macro Scripts</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
-
-  html, body {
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body, html {
     height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    background: #0d1117;
     color: #c9d1d9;
+    font-family: 'Orbitron', sans-serif;
+    line-height: 1.6;
     user-select: none;
-  }
-
-  body.popup-open {
-    overflow: hidden;
-  }
-
-  body {
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
   }
-
   .container {
-    flex: 1;
     max-width: 1100px;
     margin: auto;
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     text-align: center;
+    padding: 3rem 1rem;
+    flex: 1 0 auto;
   }
-
   header {
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: #58a6ff;
-    margin-bottom: 0.5rem;
-    animation: fadeInDown 1s ease forwards;
-    opacity: 0;
+    font-size: 3.5rem; font-weight: 700; color: #58a6ff;
+    margin-bottom: 0.5rem; animation: fadeInDown 1s ease forwards; opacity: 0;
   }
-
   h2 {
-    color: #8b949e;
-    font-weight: 400;
-    font-size: 1.6rem;
-    margin-bottom: 3rem;
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 0.3s;
-    opacity: 0;
+    color: #8b949e; font-weight: 400; font-size: 1.6rem;
+    margin-bottom: 3rem; animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.3s; opacity: 0;
   }
-
   .features {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2.5rem;
-    margin-bottom: 4rem;
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 0.6s;
-    opacity: 0;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem;
+    margin-bottom: 4rem; animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.6s; opacity: 0;
   }
-
   .feature {
-    background: #21262d;
-    border-radius: 15px;
-    padding: 2rem 2.5rem;
-    width: 280px;
-    box-shadow: 0 0 20px #58a6ff66;
-    transition: transform 0.35s, box-shadow 0.35s;
-    cursor: default;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    background: #21262d; border-radius: 15px; padding: 2rem 2.5rem; width: 280px;
+    box-shadow: 0 0 20px #58a6ff66; transition: transform 0.35s, box-shadow 0.35s;
+    cursor: default; display: flex; flex-direction: column; justify-content: flex-start;
   }
+  .feature:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 0 40px #58a6ffcc; }
+  .feature h3 { color: #58a6ff; margin-bottom: 1rem; font-weight: 700; font-size: 1.6rem; }
+  .feature p { font-size: 1.1rem; color: #8b949e; flex-grow: 1; line-height: 1.4; }
 
-  .feature:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 0 40px #58a6ffcc;
-  }
-
-  .feature h3 {
-    color: #58a6ff;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    font-size: 1.6rem;
-  }
-
-  .feature p {
-    font-size: 1.1rem;
-    color: #8b949e;
-    flex-grow: 1;
-    line-height: 1.4;
-  }
-
-  /* Updated Image grid to fill screen better */
+  /* Image grid */
   .images-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem; 
     margin-bottom: 2rem;
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 0.8s;
+    animation: fadeInUp 1s ease forwards; 
+    animation-delay: 0.8s; 
     opacity: 0;
   }
-
   .images-grid img {
-    width: 100%;
-    height: auto;
+    width: 100%; 
+    height: auto; 
     border-radius: 10px;
-    box-shadow: 0 0 15px #00000055;
+    box-shadow: 0 0 15px #00000055; 
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    object-fit: cover;
   }
-
-  .images-grid img:hover {
-    transform: scale(1.07);
-    box-shadow: 0 0 35px #00000088;
-  }
+  .images-grid img:hover { transform: scale(1.05); box-shadow: 0 0 30px #00000088; }
 
   /* Popup (lightbox) */
   .popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    display: none; 
+    position: fixed; 
+    top: 0; left: 0;
+    width: 100%; height: 100%; 
     background: rgba(0,0,0,0.85);
-    z-index: 999;
-    justify-content: center;
+    z-index: 999; 
+    justify-content: center; 
     align-items: center;
   }
-
   .popup img {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 90%; 
+    max-height: 90%; 
     border-radius: 10px;
     box-shadow: 0 0 30px #000;
   }
-
-  .popup.show {
-    display: flex;
-  }
-
+  .popup.show { display: flex; }
   .popup:after {
-    content: '×';
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    font-size: 3rem;
-    color: white;
+    content: '×'; 
+    position: absolute; 
+    top: 20px; right: 35px;
+    font-size: 3rem; 
+    color: white; 
     cursor: pointer;
-    font-weight: bold;
+    font-weight: bold; 
     line-height: 1;
   }
 
   .download-btn {
-    display: inline-block;
-    background: #238636;
+    display: inline-block; 
+    background: #238636; 
     color: white;
-    padding: 1.4rem 3rem;
-    font-weight: 700;
+    padding: 1.4rem 3rem; 
+    font-weight: 700; 
     font-size: 1.3rem;
-    border-radius: 10px;
+    border-radius: 10px; 
     text-decoration: none;
     box-shadow: 0 8px 15px rgba(35,134,54,0.4);
     transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 1s;
+    animation: fadeInUp 1s ease forwards; 
+    animation-delay: 1s; 
     opacity: 0;
     user-select: none;
   }
-
   .download-btn:hover {
-    background: #2ea043;
+    background: #2ea043; 
     box-shadow: 0 12px 25px rgba(46,160,67,0.7);
     transform: translateY(-3px);
   }
 
+  @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-40px); } 100% { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+
   footer {
-    margin-top: 3rem;
-    text-align: center;
-    color: #8b949e;
+    margin-top: 3rem; 
+    text-align: center; 
+    color: #8b949e; 
     font-size: 0.9rem;
-  }
-
-  @keyframes fadeInDown {
-    0% {
-      opacity: 0;
-      transform: translateY(-40px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    flex-shrink: 0;
   }
 
   canvas#particles {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100vw;
     height: 100vh;
     z-index: -1;
+    background: #0d1117;
+    display: block;
   }
 
   @media (max-width: 720px) {
-    .features {
-      flex-direction: column;
-      align-items: center;
-    }
-    .feature {
-      width: 90%;
-      max-width: 320px;
-    }
-    .images-grid {
-      grid-template-columns: 1fr; /* single column on small */
-      gap: 1.5rem;
-    }
+    .features { flex-direction: column; align-items: center; }
+    .feature { width: 90%; max-width: 320px; }
   }
 </style>
 </head>
@@ -249,18 +153,9 @@
     <h2>ERLC Python Macro Scripts</h2>
 
     <div class="features">
-      <div class="feature">
-        <h3>Simplicity</h3>
-        <p>Easy to install and use. No nonsense.</p>
-      </div>
-      <div class="feature">
-        <h3>Efficiency</h3>
-        <p>Optimized scripts that run smoothly and fast.</p>
-      </div>
-      <div class="feature">
-        <h3>Safe</h3>
-        <p>Minimizes detection risk with smart delays.</p>
-      </div>
+      <div class="feature"><h3>Simplicity</h3><p>Easy to install and use. No nonsense.</p></div>
+      <div class="feature"><h3>Efficiency</h3><p>Optimized scripts that run smoothly and fast.</p></div>
+      <div class="feature"><h3>Safe</h3><p>Minimizes detection risk with smart delays.</p></div>
     </div>
 
     <div id="imageGrid" class="images-grid"></div>
@@ -269,18 +164,17 @@
        class="download-btn" target="_blank" rel="noopener noreferrer">
        Get Now
     </a>
-
-    <footer>
-      © 2025 ERLC PMS. All rights reserved.
-    </footer>
   </div>
+
+  <footer>© 2025 ERLC PMS. All rights reserved.</footer>
 
   <!-- Popup -->
   <div id="popup" class="popup">
-    <img src="" alt="popup" />
+    <img src="" alt="popup">
   </div>
 
   <script>
+    // Image files
     const imageFiles = ['image-1.png', 'image-2.png', 'image-3.png'];
     const grid = document.getElementById('imageGrid');
     const popup = document.getElementById('popup');
@@ -293,67 +187,76 @@
       img.addEventListener('click', () => {
         popupImg.src = img.src;
         popup.classList.add('show');
-        document.body.classList.add('popup-open');
       });
       grid.appendChild(img);
     });
 
-    popup.addEventListener('click', () => {
-      popup.classList.remove('show');
-      document.body.classList.remove('popup-open');
-    });
+    popup.addEventListener('click', () => popup.classList.remove('show'));
 
     // Particle background
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
-    let particlesArray;
-
-    function init() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      particlesArray = [];
-      const numberOfParticles = Math.floor(canvas.width / 10);
-      for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
-    }
+    let particlesArray = [];
 
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.6;
-        this.speedY = (Math.random() - 0.5) * 0.6;
-        this.color = 'rgba(88,166,255,0.7)';
+        this.size = Math.random() * 2 + 1.5;
+        this.speedX = (Math.random() - 0.5) * 0.7;
+        this.speedY = (Math.random() - 0.5) * 0.7;
+        this.color = 'rgba(88,166,255,0.8)';
+        this.baseX = this.x;
+        this.baseY = this.y;
       }
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
+
         if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
         if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+
+        // subtle float back
+        this.x += (this.baseX - this.x) * 0.002;
+        this.y += (this.baseY - this.y) * 0.002;
       }
       draw() {
+        ctx.shadowColor = 'rgba(88,166,255,0.8)';
+        ctx.shadowBlur = 6;
         ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
+        ctx.shadowBlur = 0;
       }
     }
 
-    function handleParticles() {
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
-        for (let j = i + 1; j < particlesArray.length; j++) {
-          const dx = particlesArray[i].x - particlesArray[j].x;
-          const dy = particlesArray[i].y - particlesArray[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 120) {
-            ctx.strokeStyle = 'rgba(88,166,255,0.15)';
+    function init() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particlesArray = [];
+      const numberOfParticles = Math.floor(canvas.width / 7);
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a + 1; b < particlesArray.length; b++) {
+          let dx = particlesArray[a].x - particlesArray[b].x;
+          let dy = particlesArray[a].y - particlesArray[b].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 140) {
+            ctx.strokeStyle = `rgba(88,166,255,${1 - distance / 140})`;
             ctx.lineWidth = 1;
+            ctx.shadowColor = `rgba(88,166,255,${1 - distance / 140})`;
+            ctx.shadowBlur = 5;
             ctx.beginPath();
-            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
             ctx.stroke();
+            ctx.shadowBlur = 0;
           }
         }
       }
@@ -361,11 +264,18 @@
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      handleParticles();
+      particlesArray.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      connectParticles();
       requestAnimationFrame(animate);
     }
 
-    window.addEventListener('resize', init);
+    window.addEventListener('resize', () => {
+      init();
+    });
+
     init();
     animate();
   </script>
