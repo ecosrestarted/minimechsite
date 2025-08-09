@@ -1,85 +1,141 @@
-body {
-  background: #0d1117;
-  color: #c9d1d9;
-  font-family: 'Orbitron', sans-serif;
-  line-height: 1.5;
-  padding: 2rem 1rem;
-  margin: 0;
-}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ERLC PMS - ERLC Python Macro Scripts</title>
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-}
+  body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Orbitron', sans-serif;
+    line-height: 1.5;
+    padding: 2rem 1rem;
+    user-select: none;
+    cursor: crosshair;
+  }
 
-header {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #58a6ff;
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 
-h2 {
-  color: #8b949e;
-  font-weight: 400;
-  font-size: 1.3rem;
-  text-align: center;
-  margin-bottom: 3rem;
-}
+  header {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #58a6ff;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    user-select: none;
+  }
 
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-}
+  h2 {
+    color: #8b949e;
+    font-weight: 400;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-.feature {
-  background: #161b22;
-  border-radius: 12px;
-  padding: 1.5rem 2rem;
-  width: 260px;
-  box-shadow: 0 0 15px #58a6ff55;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: default;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
 
-.feature:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 30px #58a6ffcc;
-}
+  .feature {
+    background: #161b22;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    width: 260px;
+    box-shadow: 0 0 15px #58a6ff55;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 
-.feature h3 {
-  color: #58a6ff;
-  margin-bottom: 0.8rem;
-  font-weight: 700;
-}
+  .feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px #58a6ffcc;
+  }
 
-.feature p {
-  font-size: 1rem;
-  color: #8b949e;
-  flex-grow: 1;
-}
+  .feature h3 {
+    color: #58a6ff;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+  }
 
-.download-btn {
-  display: block;
-  background: #238636;
-  color: white;
-  max-width: 280px;
-  margin: 2rem auto 0 auto;
-  padding: 1.2rem 0;
-  font-weight: 700;
-  font-size: 1.25rem;
-  text-align: center;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.3s ease;
-}
+  .feature p {
+    font-size: 1rem;
+    color: #8b949e;
+    flex-grow: 1;
+  }
 
-.download-btn:hover {
-  background: #2ea043;
-}
+  .download-btn {
+    display: block;
+    background: #238636;
+    color: white;
+    max-width: 280px;
+    margin: 2rem auto 0 auto;
+    padding: 1.2rem 0;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+  }
+
+  .download-btn:hover {
+    background: #2ea043;
+  }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .features {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feature {
+      width: 90%;
+      max-width: 320px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>ERLC PMS</header>
+    <h2>ERLC Python Macro Scripts</h2>
+
+    <div class="features">
+      <div class="feature">
+        <h3>Simplicity</h3>
+        <p>Eenvoudig te installeren en gebruiken. Geen bullshit.</p>
+      </div>
+      <div class="feature">
+        <h3>Efficiency</h3>
+        <p>Geoptimaliseerde scripts die soepel en snel draaien.</p>
+      </div>
+      <div class="feature">
+        <h3>Safe</h3>
+        <p>Minimaliseert kans op detectie met slimme delays.</p>
+      </div>
+    </div>
+
+    <a href="https://discord.com/channels/1401598647493201931/1401683728526475274" 
+       class="download-btn" target="_blank" rel="noopener noreferrer">
+       Download Now
+    </a>
+  </div>
+</body>
+</html>
