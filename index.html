@@ -6,7 +6,9 @@
 <title>ERLC PMS - ERLC Python Macro Scripts</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
     background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
     color: #c9d1d9;
@@ -16,44 +18,69 @@
     user-select: none;
     overflow-x: hidden;
   }
+
   .container { max-width: 1100px; margin: 0 auto; text-align: center; }
+
   header {
     font-size: 3.5rem; font-weight: 700; color: #58a6ff;
-    margin-bottom: 0.5rem; animation: fadeInDown 1s ease forwards; opacity: 0;
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 1s ease forwards;
+    opacity: 0;
   }
+
   h2 {
     color: #8b949e; font-weight: 400; font-size: 1.6rem;
-    margin-bottom: 3rem; animation: fadeInUp 1s ease forwards;
-    animation-delay: 0.3s; opacity: 0;
+    margin-bottom: 3rem;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
   }
+
+  /* Features */
   .features {
     display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem;
-    margin-bottom: 4rem; animation: fadeInUp 1s ease forwards;
-    animation-delay: 0.6s; opacity: 0;
+    margin-bottom: 4rem;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
   }
   .feature {
-    background: #21262d; border-radius: 15px; padding: 2rem 2.5rem; width: 280px;
-    box-shadow: 0 0 20px #58a6ff66; transition: transform 0.35s, box-shadow 0.35s;
-    cursor: default; display: flex; flex-direction: column; justify-content: flex-start;
+    background: #21262d; border-radius: 15px;
+    padding: 2rem 2.5rem; width: 280px;
+    box-shadow: 0 0 20px #58a6ff66;
+    transition: transform 0.35s, box-shadow 0.35s;
+    display: flex; flex-direction: column;
   }
-  .feature:hover { transform: translateY(-10px) scale(1.05); box-shadow: 0 0 40px #58a6ffcc; }
-  .feature h3 { color: #58a6ff; margin-bottom: 1rem; font-weight: 700; font-size: 1.6rem; }
-  .feature p { font-size: 1.1rem; color: #8b949e; flex-grow: 1; line-height: 1.4; }
+  .feature:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 0 40px #58a6ffcc;
+  }
+  .feature h3 {
+    color: #58a6ff; margin-bottom: 1rem;
+    font-weight: 700; font-size: 1.6rem;
+  }
+  .feature p { font-size: 1.1rem; color: #8b949e; flex-grow: 1; }
 
   /* Image grid */
   .images-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem; margin-bottom: 2rem;
-    animation: fadeInUp 1s ease forwards; animation-delay: 0.8s; opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.8s;
+    opacity: 0;
   }
   .images-grid img {
     width: 100%; height: auto; border-radius: 10px;
     box-shadow: 0 0 15px #00000055; cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .images-grid img:hover { transform: scale(1.05); box-shadow: 0 0 30px #00000088; }
+  .images-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #00000088;
+  }
 
-  /* Popup (lightbox) */
+  /* Popup */
   .popup {
     display: none; position: fixed; top: 0; left: 0;
     width: 100%; height: 100%; background: rgba(0,0,0,0.85);
@@ -70,30 +97,47 @@
     font-weight: bold; line-height: 1;
   }
 
+  /* Download button */
   .download-btn {
     display: inline-block; background: #238636; color: white;
     padding: 1.4rem 3rem; font-weight: 700; font-size: 1.3rem;
     border-radius: 10px; text-decoration: none;
     box-shadow: 0 8px 15px rgba(35,134,54,0.4);
     transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-    animation: fadeInUp 1s ease forwards; animation-delay: 1s; opacity: 0;
-    user-select: none;
+    animation: fadeInUp 1s ease forwards; animation-delay: 1s;
+    opacity: 0; user-select: none;
   }
   .download-btn:hover {
     background: #2ea043; box-shadow: 0 12px 25px rgba(46,160,67,0.7);
     transform: translateY(-3px);
   }
 
-  @keyframes fadeInDown { 0% { opacity: 0; transform: translateY(-40px); } 100% { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
-
-  canvas#particles {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+  /* Animations */
+  @keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 
+  /* Particle canvas */
+  canvas#particles {
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh; z-index: -1;
+  }
+
+  /* Responsive */
   @media (max-width: 720px) {
     .features { flex-direction: column; align-items: center; }
     .feature { width: 90%; max-width: 320px; }
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 3rem; text-align: center;
+    color: #8b949e; font-size: 0.9rem;
   }
 </style>
 </head>
@@ -115,18 +159,9 @@
        class="download-btn" target="_blank" rel="noopener noreferrer">
        Get Now
     </a>
+
+    <footer>© 2025 ERLC PMS. All rights reserved.</footer>
   </div>
-
-    <a href="https://discord.com/channels/1401598647493201931/1401683728526475274" 
-       class="download-btn" target="_blank" rel="noopener noreferrer">
-       Download Now
-    </a>
-
-    <footer style="margin-top: 3rem; text-align: center; color: #8b949e; font-size: 0.9rem;">
-      © 2025 ERLC PMS. All rights reserved.
-    </footer>
-  </div>
-
 
   <!-- Popup -->
   <div id="popup" class="popup">
@@ -134,6 +169,7 @@
   </div>
 
   <script>
+    /* Image gallery */
     const imageFiles = ['image-1.png', 'image-2.png', 'image-3.png'];
     const grid = document.getElementById('imageGrid');
     const popup = document.getElementById('popup');
@@ -152,18 +188,11 @@
 
     popup.addEventListener('click', () => popup.classList.remove('show'));
 
-    // Particle background
+    /* Particle background */
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let particlesArray;
 
-    function init() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      particlesArray = [];
-      const numberOfParticles = Math.floor(canvas.width / 10);
-      for (let i = 0; i < numberOfParticles; i++) particlesArray.push(new Particle());
-    }
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -174,9 +203,10 @@
         this.color = 'rgba(88,166,255,0.7)';
       }
       update() {
-        this.x += this.speedX; this.y += this.speedY;
-        if(this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
-        if(this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX = -this.speedX;
+        if (this.y < 0 || this.y > canvas.height) this.speedY = -this.speedY;
       }
       draw() {
         ctx.fillStyle = this.color;
@@ -185,26 +215,43 @@
         ctx.fill();
       }
     }
+
+    function init() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particlesArray = [];
+      const numberOfParticles = Math.floor(canvas.width / 10);
+      for (let i = 0; i < numberOfParticles; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
     function handleParticles() {
-      for(let i=0; i < particlesArray.length; i++) {
-        particlesArray[i].update(); particlesArray[i].draw();
-        for(let j = i+1; j < particlesArray.length; j++) {
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+        for (let j = i + 1; j < particlesArray.length; j++) {
           const dx = particlesArray[i].x - particlesArray[j].x;
           const dy = particlesArray[i].y - particlesArray[j].y;
-          const distance = Math.sqrt(dx*dx + dy*dy);
-          if(distance < 120) {
-            ctx.strokeStyle = 'rgba(88,166,255,0.15)'; ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
-            ctx.lineTo(particlesArray[j].x, particlesArray[j].y); ctx.stroke();
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 120) {
+            ctx.strokeStyle = 'rgba(88,166,255,0.15)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+            ctx.stroke();
           }
         }
       }
     }
+
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       handleParticles();
       requestAnimationFrame(animate);
     }
+
     window.addEventListener('resize', init);
     init();
     animate();
