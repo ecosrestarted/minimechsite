@@ -1,56 +1,39 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mini Mechanics Belgium - Home</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RedHot Roblox Cheat</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="active">Home</a>
-    <a href="stock.html">Stock</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+<header>RedHot Roblox Cheat</header>
+<h2>The most powerful &amp; stealthy cheat for Roblox</h2>
 
-  <main>
-    <h1 class="fade-scroll">Welkom bij Mini Mechanics Belgium</h1>
-    <p class="fade-scroll" style="transition-delay: 0.2s;">
-      Ik ben Sigma, een gepassioneerde hobbyist in minibikes. Hier vind je een
-      kleine collectie brommertjes die ik met liefde onderhoud en soms verkoop.
-    </p>
-    <p class="fade-scroll" style="transition-delay: 0.4s;">
-      Geen fancy shop, maar eerlijk vakmanschap en een persoonlijke touch.
-      Bekijk zeker onze stock en neem contact op als je vragen hebt.
-    </p>
-  </main>
+<div class="features">
+  <div class="feature">
+    <h3>Undetectable</h3>
+    <p>Stay safe with our advanced anti-cheat bypass.</p>
+  </div>
+  <div class="feature">
+    <h3>Easy Setup</h3>
+    <p>One click install, zero hassle.</p>
+  </div>
+  <div class="feature">
+    <h3>Constant Updates</h3>
+    <p>Always fresh, always working.</p>
+  </div>
+</div>
 
-  <footer>
-    &copy; 2025 Mini Mechanics Belgium — Alle rechten voorbehouden.
-  </footer>
+<a href="download/redhot_cheat.exe" class="download-btn" download>Download Now</a>
 
-  <script>
-    // Fade-in scroll observer
-    const faders = document.querySelectorAll('.fade-scroll');
+<p class="disclaimer">
+  Disclaimer: Use at your own risk. We are not responsible for any bans or account issues. Cheating is against Roblox's terms of service.
+</p>
 
-    const appearOptions = {
-      threshold: 0,
-      rootMargin: "0px 0px -100px 0px"
-    };
+<footer>© 2025 RedHot Cheats</footer>
 
-    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('visible');
-        appearOnScroll.unobserve(entry.target);
-      });
-    }, appearOptions);
-
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
-    });
-  </script>
 </body>
 </html>
